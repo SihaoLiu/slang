@@ -296,7 +296,7 @@ cc_library(
         "source/analysis",
     ],
     copts = [
-        "-std=c++20",
+        "-std=c++23",
         "-frtti",
         "-fexceptions",
         "-DSLANG_STATIC_DEFINE",
