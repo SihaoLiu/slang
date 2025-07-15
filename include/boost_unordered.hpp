@@ -8125,7 +8125,7 @@ void track_address(Archive& ar, Ptr p) {
 
     if (p) {
         ar& core::make_nvp("address", *reinterpret_cast<serialization_tracker<element_type>*>(
-                                          const_cast<element_type*>(std::to_address(p))));
+                                          const_cast<element_type*>(std::__to_address(p))));
     }
 }
 
@@ -8136,7 +8136,7 @@ void serialize_tracked_address(Archive& ar, Ptr& p, std::true_type /* save */) {
     typedef serialization_tracker<element_type> tracker;
 
     tracker* pt = const_cast<tracker*>(
-        reinterpret_cast<const tracker*>(const_cast<const element_type*>(std::to_address(p))));
+        reinterpret_cast<const tracker*>(const_cast<const element_type*>(std::__to_address(p))));
     ar << core::make_nvp("pointer", pt);
 }
 
@@ -8287,8 +8287,8 @@ private:
                                      n)},
         p_{to_pointer<table_element_pointer>(const_cast<table_element_type*>(ptet))} {}
 
-    unsigned char* pc() const noexcept { return std::to_address(pc_); }
-    table_element_type* p() const noexcept { return std::to_address(p_); }
+    unsigned char* pc() const noexcept { return std::__to_address(pc_); }
+    table_element_type* p() const noexcept { return std::__to_address(p_); }
 
     inline void increment() noexcept {
         BOOST_ASSERT(p() != nullptr);
