@@ -1,0 +1,32 @@
+# Basic build configuration
+build --cxxopt=-std=c++20
+build --cxxopt=-frtti
+build --cxxopt=-fexceptions
+build --cxxopt=-Wall
+build --cxxopt=-Wextra
+build --cxxopt=-Wno-unused-parameter
+build --cxxopt=-Wno-unused-variable
+build --cxxopt=-Wno-unused-but-set-variable
+build --linkopt=-pthread
+
+# Disable ccache to avoid read-only file system issues
+build --action_env=CCACHE_DISABLE=1
+
+# Enable bzlmod
+common --enable_bzlmod
+
+# Platform-specific settings
+build:linux --cxxopt=-fPIC
+build:macos --cxxopt=-fPIC
+
+# Debug configuration
+build:debug --cxxopt=-g
+build:debug --cxxopt=-O0
+build:debug --cxxopt=-DSLANG_DEBUG
+
+# Release configuration
+build:release --cxxopt=-O2
+build:release --cxxopt=-DNDEBUG
+
+# Use the release config by default
+build --config=release
