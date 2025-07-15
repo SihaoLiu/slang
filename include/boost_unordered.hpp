@@ -5878,7 +5878,7 @@ struct pow2_size_policy {
         // of performance
 
         return sizeof(std::size_t) * CHAR_BIT -
-               (n <= 2 ? 1 : ((std::size_t)(std::bit_width(n - 1))));
+               (n <= 2 ? 1 : ((std::size_t)(std::__bit_width(n - 1))));
     }
 
     static inline std::size_t size(std::size_t size_index_) {
@@ -5959,7 +5959,7 @@ inline unsigned int unchecked_countr_zero(int x) {
     return (unsigned int)r;
 #    else
     BOOST_UNORDERED_ASSUME(x != 0);
-    return (unsigned int)std::countr_zero((unsigned int)x);
+    return (unsigned int)std::__countr_zero((unsigned int)x);
 #    endif
 }
 
@@ -6048,8 +6048,8 @@ struct table_arrays {
     table_arrays(std::size_t gsi, std::size_t gsm, group_type_pointer pg, value_type_pointer pe) :
         groups_size_index{gsi}, groups_size_mask{gsm}, groups_{pg}, elements_{pe} {}
 
-    value_type* elements() const noexcept { return std::to_address(elements_); }
-    group_type* groups() const noexcept { return std::to_address(groups_); }
+    value_type* elements() const noexcept { return std::__to_address(elements_); }
+    group_type* groups() const noexcept { return std::__to_address(groups_); }
 
     static void set_arrays(table_arrays& arrays, allocator_type al, std::size_t n) {
         return set_arrays(arrays, al, n, std::is_same<group_type*, group_type_pointer>{});
