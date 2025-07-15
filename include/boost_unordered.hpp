@@ -464,13 +464,13 @@ struct flat_set_types {
     template<class A, class... Args>
     static void construct(A& al, value_type* p, Args&&... args) {
         constructibility_checker::check(al, p, std::forward<Args>(args)...);
-        std::allocator_traits<std::remove_cvref_t<decltype(al)>>::construct(
+        std::allocator_traits<std::__remove_cvref_t<decltype(al)>>::construct(
             al, p, std::forward<Args>(args)...);
     }
 
     template<class A>
     static void destroy(A& al, value_type* p) noexcept {
-        std::allocator_traits<std::remove_cvref_t<decltype(al)>>::destroy(al, p);
+        std::allocator_traits<std::__remove_cvref_t<decltype(al)>>::destroy(al, p);
     }
 };
 } // namespace foa
@@ -1031,13 +1031,13 @@ namespace detail {
 struct allocator_policy {
     template<class Allocator, class T, class... Args>
     static void construct(Allocator& a, T* p, Args&&... args) {
-        std::allocator_traits<std::remove_cvref_t<decltype(a)>>::construct(
+        std::allocator_traits<std::__remove_cvref_t<decltype(a)>>::construct(
             a, p, std::forward<Args>(args)...);
     }
 
     template<class Allocator, class T>
     static void destroy(Allocator& a, T* p) {
-        std::allocator_traits<std::remove_cvref_t<decltype(a)>>::destroy(a, p);
+        std::allocator_traits<std::__remove_cvref_t<decltype(a)>>::destroy(a, p);
     }
 };
 
@@ -11157,37 +11157,37 @@ struct flat_map_types {
     template<class A, class... Args>
     static void construct(A& al, init_type* p, Args&&... args) {
         constructibility_checker::check(al, p, std::forward<Args>(args)...);
-        std::allocator_traits<std::remove_cvref_t<decltype(al)>>::construct(
+        std::allocator_traits<std::__remove_cvref_t<decltype(al)>>::construct(
             al, p, std::forward<Args>(args)...);
     }
 
     template<class A, class... Args>
     static void construct(A& al, value_type* p, Args&&... args) {
         constructibility_checker::check(al, p, std::forward<Args>(args)...);
-        std::allocator_traits<std::remove_cvref_t<decltype(al)>>::construct(
+        std::allocator_traits<std::__remove_cvref_t<decltype(al)>>::construct(
             al, p, std::forward<Args>(args)...);
     }
 
     template<class A, class... Args>
     static void construct(A& al, key_type* p, Args&&... args) {
         constructibility_checker::check(al, p, std::forward<Args>(args)...);
-        std::allocator_traits<std::remove_cvref_t<decltype(al)>>::construct(
+        std::allocator_traits<std::__remove_cvref_t<decltype(al)>>::construct(
             al, p, std::forward<Args>(args)...);
     }
 
     template<class A>
     static void destroy(A& al, init_type* p) noexcept {
-        std::allocator_traits<std::remove_cvref_t<decltype(al)>>::destroy(al, p);
+        std::allocator_traits<std::__remove_cvref_t<decltype(al)>>::destroy(al, p);
     }
 
     template<class A>
     static void destroy(A& al, value_type* p) noexcept {
-        std::allocator_traits<std::remove_cvref_t<decltype(al)>>::destroy(al, p);
+        std::allocator_traits<std::__remove_cvref_t<decltype(al)>>::destroy(al, p);
     }
 
     template<class A>
     static void destroy(A& al, key_type* p) noexcept {
-        std::allocator_traits<std::remove_cvref_t<decltype(al)>>::destroy(al, p);
+        std::allocator_traits<std::__remove_cvref_t<decltype(al)>>::destroy(al, p);
     }
 };
 } // namespace foa
