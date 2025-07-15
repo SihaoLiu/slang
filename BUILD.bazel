@@ -301,8 +301,11 @@ cc_library(
         "-frtti",
         "-fexceptions",
         "-DSLANG_STATIC_DEFINE",
-        "-DSLANG_BOOST_SINGLE_HEADER",
+        "-DSLANG_BOOST_SINGLE_HEADER=1",
         "-I$(GENDIR)",  # For generated headers
+    ],
+    local_defines = [
+        "_GLIBCXX_USE_CXX11_ABI=1",
     ],
     linkopts = ["-pthread"],
     deps = [
