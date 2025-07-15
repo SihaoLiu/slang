@@ -335,7 +335,16 @@ filegroup(
 # External headers library
 cc_library(
     name = "external_headers",
-    hdrs = glob(["external/**/*.hpp", "external/**/*.h"], exclude_directories = 1),
+    hdrs = [
+        "external/BS_thread_pool.hpp",
+        "external/boost_concurrent.hpp",
+        "external/boost_unordered.hpp",
+        "external/expected.hpp",
+        "external/ieee1800/sv_vpi_user.h",
+        "external/ieee1800/svdpi.h",
+        "external/ieee1800/vpi_compatibility.h",
+        "external/ieee1800/vpi_user.h",
+    ],
     includes = ["external"],
     strip_include_prefix = "external",
 )
