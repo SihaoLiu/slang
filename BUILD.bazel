@@ -326,7 +326,7 @@ alias(
     actual = ":slang",
 )
 
-# External headers filegroup
+# External headers filegroup - for reference only
 filegroup(
     name = "external_files",
     srcs = [
