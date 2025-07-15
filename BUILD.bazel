@@ -330,7 +330,6 @@ cc_library(
         "external/ieee1800/vpi_user.h",
     ],
     includes = ["external"],
-    strip_include_prefix = "external",
 )
 
 # Test program to debug includes
