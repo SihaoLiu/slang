@@ -307,6 +307,10 @@ cc_library(
     local_defines = [
         "_GLIBCXX_USE_CXX11_ABI=1",
     ],
+    defines = [
+        "SLANG_BOOST_SINGLE_HEADER=1",
+        "SLANG_STATIC_DEFINE",
+    ],
     linkopts = ["-pthread"],
     deps = [
         "@fmt",
