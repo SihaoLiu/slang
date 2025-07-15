@@ -294,16 +294,16 @@ cc_library(
         "source/ast/symbols",
         "source/numeric",
         "source/analysis",
+        "external",
     ],
     copts = [
-        "-std=c++23",
+        "-std=c++20",
         "-frtti",
         "-fexceptions",
         "-DSLANG_STATIC_DEFINE",
         "-DSLANG_BOOST_SINGLE_HEADER",
         "-I$(GENDIR)",  # For generated headers
     ],
-    features = ["-default_compile_flags"],
     linkopts = ["-pthread"],
     deps = [
         ":external_headers",
@@ -317,10 +317,10 @@ alias(
     actual = ":slang",
 )
 
-# External headers library
-cc_library(
-    name = "external_headers",
-    hdrs = [
+# External headers filegroup
+filegroup(
+    name = "external_files",
+    srcs = [
         "external/BS_thread_pool.hpp",
         "external/boost_concurrent.hpp",
         "external/boost_unordered.hpp",
@@ -330,7 +330,14 @@ cc_library(
         "external/ieee1800/vpi_compatibility.h",
         "external/ieee1800/vpi_user.h",
     ],
+)
+
+# External headers library
+cc_library(
+    name = "external_headers",
+    hdrs = glob(["external/**/*.hpp", "external/**/*.h"]),
     includes = ["external"],
+    strip_include_prefix = "external",
 )
 
 # Test program to debug includes
