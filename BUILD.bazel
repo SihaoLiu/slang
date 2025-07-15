@@ -319,7 +319,7 @@ alias(
 # External headers library
 cc_library(
     name = "external_headers",
-    hdrs = glob(["external/**/*.hpp", "external/**/*.h"]),
+    hdrs = glob(["external/**/*.hpp", "external/**/*.h"], exclude_directories = 1),
     includes = ["external"],
     strip_include_prefix = "external",
 )
