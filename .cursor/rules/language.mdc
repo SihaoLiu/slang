@@ -1,0 +1,54 @@
+---
+description: Language requirements for CIRCT repository
+globs: 
+alwaysApply: true
+---
+# Language Requirements
+
+## Repository Language Rule
+**All files written in this repository must be in English**, including:
+- Source code (variable names, function names, class names, API endpoints)
+- Comments and documentation
+- Error messages and log output
+- Git commit messages and branch names
+- Configuration files and scripts
+- README files and documentation
+
+## Conversation Language Rule
+**In conversations only**, you may use the same language that the user used in their question. If the user asks in Chinese, you may respond in Chinese. If the user asks in English, respond in English.
+
+## Examples
+
+### ✅ Correct (English code)
+```cpp
+// Calculate the maximum delay for the circuit
+int calculateMaxDelay(CircuitNode* root) {
+    if (!root) {
+        printf("Error: Invalid circuit node\n");
+        return -1;
+    }
+    return root->delay;
+}
+```
+
+### ❌ Incorrect (Chinese in code)
+```cpp
+// 计算电路的最大延迟
+int 计算最大延迟(CircuitNode* 根节点) {
+    if (!根节点) {
+        printf("错误：无效的电路节点\n");
+        return -1;
+    }
+    return 根节点->delay;
+}
+```
+
+### ✅ Correct (English commit message)
+```
+git commit -m "Add support for pipeline scheduling optimization"
+```
+
+### ❌ Incorrect (Chinese commit message)
+```
+git commit -m "添加流水线调度优化支持"
+```

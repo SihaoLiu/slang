@@ -284,17 +284,9 @@ cc_library(
         ":slang/slang_export.h",
     ] + glob([
         "include/**/*.h",
+        "include/**/*.hpp",
         "source/**/*.h",
-    ]) + [
-        "external/BS_thread_pool.hpp",
-        "external/boost_concurrent.hpp",
-        "external/boost_unordered.hpp",
-        "external/expected.hpp",
-        "external/ieee1800/sv_vpi_user.h",
-        "external/ieee1800/svdpi.h",
-        "external/ieee1800/vpi_compatibility.h",
-        "external/ieee1800/vpi_user.h",
-    ],
+    ]),
     includes = [
         "include",
         "source",
@@ -303,7 +295,6 @@ cc_library(
         "source/ast/symbols",
         "source/numeric",
         "source/analysis",
-        "external",
     ],
     copts = [
         "-std=c++20",
@@ -315,7 +306,6 @@ cc_library(
     ],
     linkopts = ["-pthread"],
     deps = [
-        ":external_headers",
         "@fmt",
     ],
 )
@@ -326,41 +316,3 @@ alias(
     actual = ":slang",
 )
 
-# External headers filegroup - for reference only
-filegroup(
-    name = "external_files",
-    srcs = [
-        "external/BS_thread_pool.hpp",
-        "external/boost_concurrent.hpp",
-        "external/boost_unordered.hpp",
-        "external/expected.hpp",
-        "external/ieee1800/sv_vpi_user.h",
-        "external/ieee1800/svdpi.h",
-        "external/ieee1800/vpi_compatibility.h",
-        "external/ieee1800/vpi_user.h",
-    ],
-)
-
-# External headers library - with strip_include_prefix
-cc_library(
-    name = "external_headers",
-    hdrs = [
-        "external/BS_thread_pool.hpp",
-        "external/boost_concurrent.hpp",
-        "external/boost_unordered.hpp",
-        "external/expected.hpp",
-        "external/ieee1800/sv_vpi_user.h",
-        "external/ieee1800/svdpi.h",
-        "external/ieee1800/vpi_compatibility.h",
-        "external/ieee1800/vpi_user.h",
-    ],
-    includes = ["external"],
-    strip_include_prefix = "external",
-)
-
-# Test program to debug includes
-cc_binary(
-    name = "test_include",
-    srcs = ["test_include.cpp"],
-    deps = [":external_headers"],
-)
