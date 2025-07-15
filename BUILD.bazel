@@ -303,6 +303,7 @@ cc_library(
         "-DSLANG_BOOST_SINGLE_HEADER",
         "-I$(GENDIR)",  # For generated headers
     ],
+    features = ["-default_compile_flags"],
     linkopts = ["-pthread"],
     deps = [
         ":external_headers",
